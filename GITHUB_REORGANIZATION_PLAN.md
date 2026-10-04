@@ -1,234 +1,54 @@
-# Plano de Reorganização do Perfil GitHub - onlitec
+# Plano de Reorganização do GitHub - onlitec
 
-Data: 2026-10-04
-Status: Pronto para execução
+Revisado em 2026-10-04 após análise de todos os 60 repositórios (estrutura de arquivos e hashes de conteúdo).
+Substitui a versão anterior, que mandava arquivar `access-control-system` e não citava `onlifin`.
 
----
+## 1. Produtos principais
+- `onlifin` (privado) — plataforma financeira. Limpar a raiz: mover os ~20 `.md` de correção, `AGENTS_OLD*.md`, `.tgz`, `.bak` e `scratch_*` para `docs/` ou apagar.
+- `access-control-system` (público) — OnliAcesso. Corrigir o placeholder `YOUR_ORG/YOUR_REPO` nos badges do README.
 
-## Objetivo
-Transformar o perfil de um acervo de 48 projetos dispersos em uma estrutura organizada de 5 produtos principais + categorias de suporte.
+## 2. Manter, por categoria
+- **Onlifin:** `onlifin-android`, `onlifin-marketing-site`, `onlifin_layout`
+- **OnliDesk, acesso remoto:** `OnliDeskRemote` (cliente, fork RustDesk) + `OnliDeskWatch` (monitoramento; é submódulo `OnliDeskWhatch/` do OnliDeskRemote, **não remover**)
+- **App de campo (ordens de serviço), outro produto que só compartilha o nome "OnliDesk":** renomear `OnliDesk-App` -> `OnliField-Android` e `ONLIDESK-WEB` -> `OnliField-Web`; arquivar `OnliDesk-Server` (backend .NET de help desk, geração antiga)
+- **Infraestrutura:** `OnliOps`, `OnliBackup`, `OnliBackupWeb`, `OnliBackup-releases`, `OnliCerManager`, `OnliCFTV`, `onliaiops`, `onlitec-email-security`, `Restic-UI`, `truenas-pbsclient-webgui`, `Onlihost`, `intranet`, `OnliNetwork`, `VPS-MCP-SERVER` (renomear para `PORTAINER-MCP-SERVER`; o README descreve Portainer)
+- **Oficina e sites:** `OficinaPro-ERP`, `OnliOficina`, `monitorpro`, `onlitec-web-genesis`
 
----
-
-## 📋 Resultado esperado
-
-Perfil apresentando:
-- **5 repositórios principais** com visibilidade máxima
-- **Categorias claras** de infraestrutura, clientes, legado
-- **Redução de confusão** e melhora na percepção de maturidade
-- **Documentação padronizada** nos 5 principais
-
----
-
-## 🎯 5 Repositórios Principais (Manter em destaque)
-
-| Repositório | Categoria | Linguagem | Descrição | Ação |
-|---|---|---|---|---|
-| **OnliDeskRemote** | Acesso Remoto | Rust | Plataforma de acesso remoto (fork RustDesk) | Manter + destacar |
-| **OnliOficina** | ERP / Gestão | TypeScript | Sistema de gestão de oficinas mecânicas | Manter + destacar |
-| **onlitec-web-genesis** | Presença Digital | TypeScript | Site institucional e base de presença digital | Manter + destacar |
-| **onlifin-android** | FinTech | TypeScript | App Android para plataforma financeira | Manter + destacar |
-| **OnliOps** | Infraestrutura | TypeScript | Plataforma de operação e monitoramento | Manter + destacar |
-
-**Total de produtos principais: 5**
-**Foco: comunicar maturidade e especialização**
-
----
-
-## ⚠️ Repositórios para Revisar (17 repos)
-
-Esses podem ser mantidos, mas precisam entrar em uma checagem de valor antes de permanecer no perfil principal.
-
-| Repositório | Status | Recomendação |
+## 3. Duplicados confirmados (arquivar)
+| Manter | Arquivar | Evidência |
 |---|---|---|
-| OnliDesk_Full | Pode ser versão anterior | Revisar se é realmente diferente de OnliDeskRemote |
-| OnlifinNewApp | Pode ser duplicado | Revisar se é realmente diferente de onlifin-android |
-| Onficina | Pode ser versão anterior | Revisar se é realmente diferente de OnliOficina |
-| onlifinAI | Escopo pouco claro | Revisar propósito e se é modular ou produto |
-| monitorpro | Pode ser duplicado de OnliOps | Revisar se é frontend ou produto separado |
-| OnliNetwork | Ferramenta de infraestrutura | Pode manter como módulo de OnliOps |
-| OnliLan | Ferramenta de infraestrutura | Pode manter como módulo |
-| OnliBackupWeb | Ferramenta de infraestrutura | Pode manter como módulo |
-| OnliCerManager | Ferramenta de certificados | Pode manter como módulo |
-| OnliCFTV | Ferramenta de CFTV | Pode manter como módulo |
-| OnliShark | Mirror/fork de Wireshark | Pode arquivar se não for customizado |
-| OnliBackup-releases | Distribuição de releases | Pode manter como suporte |
-| truenas-pbsclient-webgui | Integração TrueNAS | Pode manter como projeto específico |
-| VPS-MCP-SERVER | Automação VPS | Pode manter como módulo |
-| PORTAINER-MCP-SERVER | Automação Portainer | Pode manter como módulo |
-| onlifin_layout | Design system | Pode manter como módulo compartilhado |
-| onlifin-marketing-site | Site de marketing | Pode manter com categoria de presença digital |
+| `onlitec-web-genesis` | `genesis-wordpress-forge`, `onlitec-blade-artisan-craft`, `condo-harmony`, `esqualyvale-web-blossom` | 62-64 arquivos idênticos (template Lovable) |
+| `OnliOficina` | `seu-oficina-app` | 89 arquivos idênticos (template Supabase) |
+| `monitorpro` | `Onficina` | 62 arquivos idênticos |
+| `OnliDeskRemote` + família | `OliAcessoRemoto`, `OliAcessoRemoto-Projeto`, `OnliDesk`, `OnliDesk-Server`, `OnliDesk-Servidor`, `OnliDesk-Cliente` | gerações antigas (.NET/WPF), paradas desde 2025 |
+| `OficinaPro-ERP` | `oficinapro`, `oficina-mecanica`, `toledooficina` | gerações anteriores da linha oficina |
+| `onlifin-android` | `OnlifinNewApp` | versão Kotlin antiga |
+| `onlifin` | `onlifin-repo-checker-buddy`, `onlifinAI` | protótipos anteriores |
 
-**Ação: Executar uma checagem rápida em cada um desses 17 para confirmar se manter ou arquivar.**
+## 4. Outros para arquivar
+`OnliDesk_Full` (acesso remoto Qt/Go, mesma proposta do OnliDeskRemote), `OnliDesk-Server`, `onlitec-site` (WordPress completo), `dolibarr-br`, `esqualysite`, `OnliShark` / `OnliLan` / `OnLi` (forks sem customização), `MLCadastro` e `webcamfoto` (módulos Dolibarr, se não estiverem em uso).
 
----
+## 5. Deletar (12 repositórios vazios, 0 commits)
+`OnliDesk-Client`, `PORTAINER-MCP-SERVER` (após renomear o `VPS-MCP-SERVER`), `VPS-MCP-SSERVER`, `onlifinapp`, `site`, `esquasite`, `totalk`, `TorqueGest`, `OficinaTotal`, `OnliTalk`, `speektotalk`, `OnliERP`.
 
-## ❌ Repositórios para Arquivar (26 repos)
+## 6. Segurança: verificar antes de mexer
+Arquivos com nomes que sugerem credenciais. Se forem reais, trocar as credenciais (apagar o arquivo não limpa o histórico do git):
+- `condo-harmony`: `.env`
+- `toledooficina`: `.env`, `.env.coolify`, `CREDENCIAIS_LOGIN.md`
+- `onlitec-site`: `wp-config.php`
+- `OnliDesk-App`: `debug.keystore.base64`
 
-Esses devem sair da visão pública do perfil ou ser movidos para uma seção de "legado".
+## 7. Ordem de execução sugerida
+1. Verificar/rotacionar credenciais da seção 6.
+2. Limpar a raiz do `onlifin`.
+3. Renomear `VPS-MCP-SERVER` e deletar os 12 vazios.
+4. Arquivar os repositórios das seções 3 e 4 (Settings > Archive this repository; reversível).
+5. Fixar (pin) no perfil: `onlifin`, `access-control-system` e os principais de cada categoria.
 
-### Acesso remoto - versões antigas (5)
-- OnliDesk
-- OnliDesk-Client
-- OnliDesk-Cliente
-- OnliDesk-Server
-- OnliDesk-Servidor
+## 8. Execução
+`reorganizar-github.sh` (nesta branch) aplica deletar, renomear e arquivar. Por padrão roda em modo simulação (`--apply` para executar). Antes de deletar, confere que o repositório está mesmo vazio.
 
-**Motivo:** Todas substituídas por OnliDeskRemote (Rust)
-
-### OliAcessoRemoto - linha antiga (2)
-- OliAcessoRemoto
-- OliAcessoRemoto-Projeto
-
-**Motivo:** Versão anterior ao OnliDesk/OnliDeskRemote
-
-### OnliOficina - versões antigas (4)
-- Onficina
-- oficina-mecanica
-- oficinapro
-- toledooficina
-
-**Motivo:** Todas substituídas por OnliOficina (TypeScript) ou customizações específicas
-
-### OnliFin - versões antigas (2)
-- onlifinapp
-- onlifinAI (se sem escopo claro)
-
-**Motivo:** Substituídas por onlifin-android
-
-### Sites corporativos - versões antigas (2)
-- onlitec-site
-- site
-
-**Motivo:** Substituídas por onlitec-web-genesis
-
-### Clientes específicos - sem reaproveitamento (6)
-- esqualysite
-- esquasite
-- intranet
-- access-control-system
-- dolibarr-br
-- OnLi
-
-**Motivo:** Projetos de clientes específicos ou bases antigas sem reuso
-
-### Projetos sem objetivo claro ou legado (3)
-- onlitec
-- webcamfoto
-- totalk
-
-**Motivo:** Propósito pouco claro ou descontinuado
-
-**Total a arquivar: 26 repositórios**
-
----
-
-## 📊 Estrutura Recomendada no Perfil
-
-### Tier 1: Produtos Principais (5)
-- OnliDeskRemote
-- OnliOficina
-- onlitec-web-genesis
-- onlifin-android
-- OnliOps
-
-### Tier 2: Infraestrutura e Ferramentas (13)
-- OnliNetwork
-- OnliLan
-- OnliBackupWeb
-- OnliBackup-releases
-- OnliCerManager
-- OnliCFTV
-- onliaiops
-- Restic-UI
-- VPS-MCP-SERVER
-- PORTAINER-MCP-SERVER
-- onlitec-email-security
-- truenas-pbsclient-webgui
-- OnliShark
-
-### Tier 3: Clientes e Projetos Específicos (5)
-- esqualysite
-- esquasite
-- intranet
-- toledooficina
-- onlifin-marketing-site
-
-### Tier 4: Legado / Arquivado (26)
-- Todos os repositórios descontinuados ou antigos
-
----
-
-## ✅ Checklist de Ações
-
-### Fase 1: Confirmar repositórios principais
-- [ ] Validar OnliDeskRemote como principal de acesso remoto
-- [ ] Validar OnliOficina como principal de gestão
-- [ ] Validar onlitec-web-genesis como principal de presença digital
-- [ ] Validar onlifin-android como principal de FinTech
-- [ ] Validar OnliOps como principal de infraestrutura
-
-### Fase 2: Revisar os 17 repos questionáveis
-- [ ] OnliDesk_Full - é diferente de OnliDeskRemote? Se não, arquivar
-- [ ] OnlifinNewApp - é diferente de onlifin-android? Se não, arquivar
-- [ ] Onficina - é diferente de OnliOficina? Se não, arquivar
-- [ ] onlifinAI - tem escopo claro? Se não, arquivar
-- [ ] monitorpro - é frontend de OnliOps ou produto? Se frontend, integrar ou arquivar
-- [ ] Demais ferramentas - devem ser movidas para "Infraestrutura e Ferramentas"
-
-### Fase 3: Arquivar repositórios antigos (26)
-- [ ] Confirmar que OnliDesk* não têm clientes ativos antes de arquivar
-- [ ] Confirmar que onlitec-site e site podem ser substituídos por onlitec-web-genesis
-- [ ] Confirmar que onlifinapp e onlifinAI não têm uso ativo
-- [ ] Criar uma organização "onlitec-legado" ou usar tag "archived" no GitHub
-
-### Fase 4: Atualizar README dos 5 principais
-- [ ] OnliDeskRemote: adicionar features, stack, documentação, demo
-- [ ] OnliOficina: adicionar features, stack, documentação, demo
-- [ ] onlitec-web-genesis: adicionar features, stack, documentação, demo
-- [ ] onlifin-android: adicionar features, stack, documentação, demo
-- [ ] OnliOps: adicionar features, stack, documentação, demo
-
-### Fase 5: Organizar perfil público
-- [ ] Pinnar os 5 repositórios principais no perfil
-- [ ] Melhorar a bio do perfil para comunicar as 5 linhas principais
-- [ ] Adicionar descrições claras em cada repositório
-
-### Fase 6: Documentar a mudança
-- [ ] Criar um README na organização explicando a estrutura
-- [ ] Atualizar links internos que apontam para repositórios archivados
-- [ ] Comunicar a mudança em canais internos
-
----
-
-## 📈 Ganho esperado
-
-Antes:
-- 48 repositórios públicos
-- Perfil parece disperso
-- Difícil identificar produtos principais
-- Confusão de versões e duplicação
-
-Depois:
-- 5 produtos principais em destaque
-- ~13 ferramentas/infraestrutura organizadas
-- ~5 projetos cliente/específicos separados
-- ~26 repositórios em legado/arquivo
-- Perfil claro, profissional, maduro
-- Facilita recrutamento, vendas, parcerias
-
----
-
-## 🔄 Próximos passos
-
-1. Validar este plano com stakeholders
-2. Executar a Fase 1 e 2 (confirmação)
-3. Executar a Fase 3 (arquivamento)
-4. Executar a Fase 4 (documentação)
-5. Executar a Fase 5 (apresentação)
-6. Executar a Fase 6 (comunicação)
-
----
-
-Plano pronto para execução.
-Tempo estimado: 2-4 horas para conclusão.
+## 9. A verificar (sobreposição de proposta, não confirmada)
+- `access-control-system` (acesso e câmeras) × `OnliCFTV` (VMS): câmeras podem se sobrepor.
+- Backup: `OnliBackup`, `OnliBackupWeb`, `Restic-UI`, `truenas-pbsclient-webgui` — considerar uma marca única.
+- O backend do `OnliDesk-App` usa Laravel (CLAUDE.md), mas o `ONLIDESK-WEB` é Node; confirmar qual é o backend real (pode ser o `Onlihost`).
