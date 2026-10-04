@@ -9,7 +9,8 @@ Substitui a versão anterior, que mandava arquivar `access-control-system` e nã
 
 ## 2. Manter, por categoria
 - **Onlifin:** `onlifin-android`, `onlifin-marketing-site`, `onlifin_layout`
-- **OnliDesk (componentes distintos, 0 arquivos em comum):** `OnliDeskRemote`, `OnliDeskWatch`, `OnliDesk-App`, `ONLIDESK-WEB`
+- **OnliDesk, acesso remoto:** `OnliDeskRemote` (cliente, fork RustDesk) + `OnliDeskWatch` (monitoramento; é submódulo `OnliDeskWhatch/` do OnliDeskRemote, **não remover**)
+- **App de campo (ordens de serviço), outro produto que só compartilha o nome "OnliDesk":** renomear `OnliDesk-App` -> `OnliField-Android` e `ONLIDESK-WEB` -> `OnliField-Web`; arquivar `OnliDesk-Server` (backend .NET de help desk, geração antiga)
 - **Infraestrutura:** `OnliOps`, `OnliBackup`, `OnliBackupWeb`, `OnliBackup-releases`, `OnliCerManager`, `OnliCFTV`, `onliaiops`, `onlitec-email-security`, `Restic-UI`, `truenas-pbsclient-webgui`, `Onlihost`, `intranet`, `OnliNetwork`, `VPS-MCP-SERVER` (renomear para `PORTAINER-MCP-SERVER`; o README descreve Portainer)
 - **Oficina e sites:** `OficinaPro-ERP`, `OnliOficina`, `monitorpro`, `onlitec-web-genesis`
 
@@ -25,7 +26,7 @@ Substitui a versão anterior, que mandava arquivar `access-control-system` e nã
 | `onlifin` | `onlifin-repo-checker-buddy`, `onlifinAI` | protótipos anteriores |
 
 ## 4. Outros para arquivar
-`OnliDesk_Full`, `onlitec-site` (WordPress completo), `dolibarr-br`, `esqualysite`, `OnliShark` / `OnliLan` / `OnLi` (forks sem customização), `MLCadastro` e `webcamfoto` (módulos Dolibarr, se não estiverem em uso).
+`OnliDesk_Full` (acesso remoto Qt/Go, mesma proposta do OnliDeskRemote), `OnliDesk-Server`, `onlitec-site` (WordPress completo), `dolibarr-br`, `esqualysite`, `OnliShark` / `OnliLan` / `OnLi` (forks sem customização), `MLCadastro` e `webcamfoto` (módulos Dolibarr, se não estiverem em uso).
 
 ## 5. Deletar (12 repositórios vazios, 0 commits)
 `OnliDesk-Client`, `PORTAINER-MCP-SERVER` (após renomear o `VPS-MCP-SERVER`), `VPS-MCP-SSERVER`, `onlifinapp`, `site`, `esquasite`, `totalk`, `TorqueGest`, `OficinaTotal`, `OnliTalk`, `speektotalk`, `OnliERP`.
@@ -43,3 +44,11 @@ Arquivos com nomes que sugerem credenciais. Se forem reais, trocar as credenciai
 3. Renomear `VPS-MCP-SERVER` e deletar os 12 vazios.
 4. Arquivar os repositórios das seções 3 e 4 (Settings > Archive this repository; reversível).
 5. Fixar (pin) no perfil: `onlifin`, `access-control-system` e os principais de cada categoria.
+
+## 8. Execução
+`reorganizar-github.sh` (nesta branch) aplica deletar, renomear e arquivar. Por padrão roda em modo simulação (`--apply` para executar). Antes de deletar, confere que o repositório está mesmo vazio.
+
+## 9. A verificar (sobreposição de proposta, não confirmada)
+- `access-control-system` (acesso e câmeras) × `OnliCFTV` (VMS): câmeras podem se sobrepor.
+- Backup: `OnliBackup`, `OnliBackupWeb`, `Restic-UI`, `truenas-pbsclient-webgui` — considerar uma marca única.
+- O backend do `OnliDesk-App` usa Laravel (CLAUDE.md), mas o `ONLIDESK-WEB` é Node; confirmar qual é o backend real (pode ser o `Onlihost`).
